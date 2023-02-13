@@ -45,7 +45,7 @@ return [
 
     'mysql' => [
       'write' => [
-        'host' => '127.0.0.1',
+        'host' => env('DB_HOST'),
         'port' => env('DB_PORT', '3306'),
         'database' => env('DB_DATABASE', 'forge'),
         'username' => env('DB_USERNAME', 'forge'),
@@ -60,7 +60,7 @@ return [
         //   'password' => env('READ_DB_PASSWORD', ''),
         // ],
         [
-          'host' => '127.0.0.1',
+          'host' => env('DB_HOST'),
           'port' => env('DB_PORT', '3306'),
           'database' => env('DB_DATABASE', 'forge'),
           'username' => env('DB_USERNAME', 'forge'),
