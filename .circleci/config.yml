@@ -6,6 +6,7 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: cimg/php:8.1.14-browsers
+      - image: cimg/node:19.6.0
 
     working_directory: ~/pingpong
 
@@ -39,6 +40,14 @@ jobs:
       - run:
           name: "Generate App key"
           command: php artisan key:generate
+
+      - run: 
+          name: "Node install"
+          command: npm install
+
+      - run: 
+          name: "npm run dev"
+          command: npm run dev
 
       # run tests with phpunit
       - run:
