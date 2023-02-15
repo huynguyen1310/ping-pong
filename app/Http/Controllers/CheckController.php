@@ -31,7 +31,6 @@ class CheckController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreCheckRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCheckRequest $request)
@@ -42,7 +41,6 @@ class CheckController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Check  $check
      * @return \Illuminate\Http\Response
      */
     public function show(Check $check)
@@ -53,7 +51,6 @@ class CheckController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Check  $check
      * @return \Illuminate\Http\Response
      */
     public function edit(Check $check)
@@ -64,8 +61,6 @@ class CheckController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCheckRequest  $request
-     * @param  \App\Models\Check  $check
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateCheckRequest $request, Check $check)
@@ -76,7 +71,6 @@ class CheckController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Check  $check
      * @return \Illuminate\Http\Response
      */
     public function destroy(Check $check)

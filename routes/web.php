@@ -4,9 +4,7 @@ use App\Http\Controllers\PongController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SiteController;
 use App\Jobs\SendingMail;
-use App\Mail\WelcomeMail;
 use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,21 +19,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-  return view('welcome');
+    return view('welcome');
 });
 
 Route::middleware([
-  'auth:sanctum',
-  config('jetstream.auth_session'),
-  'verified'
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
 ])->group(function () {
-  Route::get('/dashboard', function () {
-    return view('dashboard');
-  })->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
 
 Route::middleware('auth')->group(function () {
-  Route::resource('sites', SiteController::class);
+    Route::resource('sites', SiteController::class);
 });
 
 Route::get('pongs', [PongController::class, 'index']);
@@ -43,6 +41,7 @@ Route::get('pongs', [PongController::class, 'index']);
 Route::get('search', SearchController::class);
 
 Route::get('/jobs', function () {
-  SendingMail::dispatch(User::first());
-  return 'welcome email Jobs dispatched!';
+    SendingMail::dispatch(User::first());
+
+    return 'welcome email Jobs dispatched!';
 });

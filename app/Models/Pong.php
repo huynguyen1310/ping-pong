@@ -8,6 +8,6 @@ use Laravel\Scout\Searchable;
 
 class Pong extends Model
 {
-  use HasFactory;
-  use Searchable;
+    use HasFactory;
+    use Searchable;
 }
