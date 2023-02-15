@@ -9,11 +9,11 @@ jobs:
       - image: cimg/node:19.6.0
 
     working_directory: ~/pingpong
-
+ 
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "7f:67:cb:c8:1d:cd:71:75:d7:41:e8:15:38:31:ee:76"
+            - "c8:ba:79:f1:2f:99:79:16:d6:0d:32:a6:43:95:26:7f"
       - checkout
       - run: sudo composer self-update
 
