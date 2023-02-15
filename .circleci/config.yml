@@ -13,7 +13,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "aa:3a:6f:71:bc:88:c2:c8:e2:32:2f:1f:3a:b0:d2:62"
+            - "7f:67:cb:c8:1d:cd:71:75:d7:41:e8:15:38:31:ee:76"
       - checkout
       - run: sudo composer self-update
 
