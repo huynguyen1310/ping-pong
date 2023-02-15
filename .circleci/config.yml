@@ -6,11 +6,6 @@ jobs:
     docker:
       # Specify the version you desire here
       - image: cimg/php:8.1.14-browsers
-      - image: circleci/mysql:5.7
-        environment:
-          MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: ''
-          MYSQL_DATABASE: laravel
 
     working_directory: ~/pingpong
 
@@ -45,10 +40,6 @@ jobs:
           name: "Generate App key"
           command: php artisan key:generate
 
-      - run:
-          name: "run migration"
-          command: |
-            php artisan migrate 
       # run tests with phpunit
       - run:
           name: "Run Tests"
