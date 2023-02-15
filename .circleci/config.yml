@@ -53,3 +53,7 @@ jobs:
       - run:
           name: "Run Tests"
           command: php artisan test
+
+      - run:
+          name: "deploy using deployer"
+          command: vendor/bin/dep deploy
