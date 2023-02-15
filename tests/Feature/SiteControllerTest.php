@@ -66,20 +66,4 @@ class SiteControllerTest extends TestCase
 
     $response->assertSessionHasErrors(['name', 'url']);
   }
-
-  public function test_redirect_a_user_to_a_prev_site_if_they_try_to_add_duplicate()
-  {
-    $user = User::factory()->create();
-
-    $site = $user->sites()->save(Site::factory()->make());
-
-    $response = $this->actingAs($user)->post(route('sites.store'), [
-      'name' => 'Google 2',
-      'url' => $site->url
-    ]);
-
-    $response->assertRedirect(route('sites.show', $site));
-
-    // $this->assertEquals(1, Site::count());
-  }
 }

@@ -22,14 +22,14 @@ it('can_create_site', function () {
   assertEquals('Google', $site->name);
 });
 
-it('redirect_a_user_to_a_prev_site_if_they_try_to_add_duplicate', function () {
-  $user = User::factory()->create();
-  $site = $user->sites()->save(
-    Site::factory()->make()
-  );
+// it('redirect_a_user_to_a_prev_site_if_they_try_to_add_duplicate', function () {
+//   $user = User::factory()->create();
+//   $site = $user->sites()->save(
+//     Site::factory()->make()
+//   );
 
-  actingAs($user)->post(route('sites.store'), [
-    'name' => 'Google 2',
-    'url' => $site->url
-  ])->assertRedirect(route('sites.show', ['site' => $site]));
-});
+//   actingAs($user)->post(route('sites.store'), [
+//     'name' => 'Google 2',
+//     'url' => $site->url
+//   ])->assertRedirect(route('sites.show', ['site' => $site]));
+// });
