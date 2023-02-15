@@ -5,7 +5,13 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: cimg/php:8.1.14-browsers
+      - image: cimg/php:8.1.14-brows
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_USER: root
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_DATABASE: laravel
 
     working_directory: ~/pingpong
 
@@ -16,7 +22,7 @@ jobs:
       - run:
           name: "Create Environment file and generate app key"
           command: |
-            mv .env.dev .env
+            mv .env.example .env
 
       # Download and cache dependencies
       - restore_cache:
