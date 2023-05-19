@@ -7,14 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class PostView extends Model
 {
-  use HasFactory;
+    use HasFactory;
 
-  protected $table = 'post_view';
+    protected $table = 'post_view';
 
-  protected $fillable = ['post_id', 'views'];
+    protected $fillable = ['post_id', 'views'];
 
-  public function post()
-  {
-    return $this->belongsTo(Post::class);
-  }
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }

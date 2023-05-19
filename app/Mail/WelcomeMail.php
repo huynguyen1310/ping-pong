@@ -19,7 +19,7 @@ class WelcomeMail extends Mailable
      */
     public function __construct()
     {
-    //
+        //
     }
 
     /**

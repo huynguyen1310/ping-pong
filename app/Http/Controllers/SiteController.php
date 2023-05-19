@@ -15,7 +15,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-    //
+        //
     }
 
     /**
@@ -25,7 +25,7 @@ class SiteController extends Controller
      */
     public function create()
     {
-    //
+        //
     }
 
     /**
@@ -57,7 +57,7 @@ class SiteController extends Controller
      */
     public function edit(Site $site)
     {
-    //
+        //
     }
 
     /**
@@ -67,7 +67,7 @@ class SiteController extends Controller
      */
     public function update(UpdateSiteRequest $request, Site $site)
     {
-    //
+        //
     }
 
     /**
@@ -77,6 +77,6 @@ class SiteController extends Controller
      */
     public function destroy(Site $site)
     {
-    //
+        //
     }
 }

@@ -36,7 +36,7 @@ class PongController extends Controller
      */
     public function create()
     {
-    //
+        //
     }
 
     /**
@@ -46,7 +46,7 @@ class PongController extends Controller
      */
     public function store(StorePongRequest $request)
     {
-    //
+        //
     }
 
     /**
@@ -56,7 +56,7 @@ class PongController extends Controller
      */
     public function show(Pong $pong)
     {
-    //
+        //
     }
 
     /**
@@ -66,7 +66,7 @@ class PongController extends Controller
      */
     public function edit(Pong $pong)
     {
-    //
+        //
     }
 
     /**
@@ -76,7 +76,7 @@ class PongController extends Controller
      */
     public function update(UpdatePongRequest $request, Pong $pong)
     {
-    //
+        //
     }
 
     /**
@@ -86,6 +86,6 @@ class PongController extends Controller
      */
     public function destroy(Pong $pong)
     {
-    //
+        //
     }
 }

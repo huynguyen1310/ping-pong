@@ -18,11 +18,11 @@ class SiteControllerTest extends TestCase
         // Notification::fake();
 
         $response = $this->followingRedirects()
-          ->actingAs($user)
-          ->post(route('sites.store'), [
-              'name' => 'Google',
-              'url' => 'https://google.com',
-          ]);
+            ->actingAs($user)
+            ->post(route('sites.store'), [
+                'name' => 'Google',
+                'url' => 'https://google.com',
+            ]);
 
         $site = Site::first();
         $this->assertEquals(1, Site::count());
@@ -40,10 +40,10 @@ class SiteControllerTest extends TestCase
     public function test_only_allows_authenticated_users_to_create_sites()
     {
         $response = $this->followingRedirects()
-          ->post(route('sites.store'), [
-              'name' => 'Google',
-              'url' => 'https://google.com',
-          ]);
+            ->post(route('sites.store'), [
+                'name' => 'Google',
+                'url' => 'https://google.com',
+            ]);
 
         $this->assertEquals(0, Site::count());
 
@@ -56,10 +56,10 @@ class SiteControllerTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)
-          ->post(route('sites.store'), [
-              'name' => '',
-              'url' => '',
-          ]);
+            ->post(route('sites.store'), [
+                'name' => '',
+                'url' => '',
+            ]);
 
         $this->assertEquals(0, Site::count());
 

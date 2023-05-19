@@ -42,8 +42,8 @@ class SiteAdded extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)->subject('New site added to your account')
-          ->line("Hello {$notifiable->name},")
-          ->line("We are just informing that the site {$this->site->url} was added to your account");
+            ->line("Hello {$notifiable->name},")
+            ->line("We are just informing that the site {$this->site->url} was added to your account");
         // ->action('See site', route('sites.show', $this->site));
     }
 
