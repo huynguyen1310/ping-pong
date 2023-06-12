@@ -18,20 +18,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+  Route::post('/auth/logout', [AuthController::class, 'logout']);
+});
 
 Route::resource('pongs', PongController::class);
 
 Route::get('products', ProductController::class);
 
 Route::middleware('auth:sanctum')->prefix('/cart')->group(function () {
-    Route::get('get-cart', [CartController::class, 'getCart']);
-    Route::post('add-item', [CartController::class, 'addItem']);
-    Route::post('remove-item', [CartController::class, 'removeItem']);
-    Route::post('update-quantity', [CartController::class, 'updateQuantity']);
+  Route::get('get-cart', [CartController::class, 'getCart']);
+  Route::post('add-item', [CartController::class, 'addItem']);
+  Route::post('remove-item', [CartController::class, 'removeItem']);
+  Route::post('update-quantity', [CartController::class, 'updateQuantity']);
 });
