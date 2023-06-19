@@ -8,13 +8,13 @@ use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
-  use HasFactory;
-  use Searchable;
+    use HasFactory;
+    use Searchable;
 
-  public function toSearchableArray()
-  {
-    return [
-      'name' => $this->name,
-    ];
-  }
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+        ];
+    }
 }

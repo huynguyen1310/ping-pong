@@ -5,7 +5,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TweetController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
