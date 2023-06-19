@@ -9,21 +9,21 @@ use Illuminate\Support\Facades\Cache;
 
 class PongController extends Controller
 {
-    public function index()
-    {
-        if (Cache::has('pongs')) {
-            return PongData::collection(Cache::get('pongs'));
-        }
-
-        $pongs = Cache::remember('pongs', 10, function () {
-            return Pong::take(10000)->get();
-        });
-
-        return PongData::collection($pongs);
+  public function index()
+  {
+    if (Cache::has('pongs')) {
+      return PongData::collection(Cache::get('pongs'));
     }
 
-    public function show(Pong $pong)
-    {
-        return PongData::from($pong);
-    }
+    $pongs = Cache::remember('pongs', 100, function () {
+      return Pong::take(10000)->get();
+    });
+
+    return PongData::collection($pongs);
+  }
+
+  public function show(Pong $pong)
+  {
+    return PongData::from($pong);
+  }
 }

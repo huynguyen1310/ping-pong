@@ -4,6 +4,7 @@ use App\Http\Controllers\API\PongController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TweetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,8 +27,9 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::resource('pongs', PongController::class);
+Route::resource('tweets', TweetController::class);
 
-Route::get('products', ProductController::class);
+Route::get('products', [ProductController::class, 'index']);
 
 Route::middleware('auth:sanctum')->prefix('/cart')->group(function () {
   Route::get('get-cart', [CartController::class, 'getCart']);
