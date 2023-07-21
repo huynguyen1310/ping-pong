@@ -7,19 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chat extends Model
 {
-  use HasFactory;
+    use HasFactory;
 
-  protected $guarded = [];
+    protected $guarded = [];
 
-  public function users()
-  {
-    return $this->belongsToMany(User::class, 'User_Chat', 'chat_id', 'user_id')
-      ->withPivot('role')
-      ->withTimestamps();
-  }
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'User_Chat', 'chat_id', 'user_id')
+            ->withPivot('role')
+            ->withTimestamps();
+    }
 
-  public function messages()
-  {
-    return $this->hasMany(Message::class, 'chat_id');
-  }
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'chat_id');
+    }
 }
