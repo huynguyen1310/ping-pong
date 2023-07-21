@@ -13,11 +13,10 @@ return new class extends Migration
    */
   public function up()
   {
-    Schema::create('products', function (Blueprint $table) {
+    Schema::create('private_chats', function (Blueprint $table) {
       $table->id();
-      $table->string('name');
-      $table->float('price');
-      $table->string('image');
+      $table->foreignId('sender_id');
+      $table->foreignId('receiver_id');
       $table->timestamps();
     });
   }
@@ -29,6 +28,6 @@ return new class extends Migration
    */
   public function down()
   {
-    Schema::dropIfExists('products');
+    Schema::dropIfExists('private_chat');
   }
 };

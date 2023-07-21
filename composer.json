@@ -11,7 +11,7 @@
         "laravel/framework": "^9.19",
         "laravel/horizon": "^5.14",
         "laravel/jetstream": "^2.16",
-        "laravel/sanctum": "^3.0",
+        "laravel/passport": "*",
         "laravel/scout": "^10.2",
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.11",

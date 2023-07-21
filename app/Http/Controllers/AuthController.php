@@ -10,93 +10,51 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
-    {
-        try {
-            //Validated
-            $validateUser = Validator::make(
-                $request->all(),
-                [
-                    'name' => 'required',
-                    'email' => 'required|email|unique:users,email',
-                    'password' => 'required',
-                ]
-            );
+  public function register(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      'name' => 'required|string|max:255',
+      'email' => 'required|string|email|max:255|unique:users',
+      'password' => 'required|string|min:6',
+    ]);
 
-            if ($validateUser->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateUser->errors(),
-                ], 401);
-            }
-
-            $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-            ]);
-
-            return response()->json([
-                'status' => true,
-                'message' => 'User Created Successfully',
-                'token' => $user->createToken('API TOKEN')->plainTextToken,
-            ], 200);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage(),
-            ], 500);
-        }
+    if ($validator->fails()) {
+      return response()->json(['error' => $validator->errors()], 422);
     }
 
-    public function login(Request $request)
-    {
-        try {
-            $validateUser = Validator::make(
-                $request->all(),
-                [
-                    'email' => 'required|email',
-                    'password' => 'required',
-                ]
-            );
+    $user = User::create([
+      'name' => $request->name,
+      'email' => $request->email,
+      'password' => Hash::make($request->password),
+    ]);
 
-            if ($validateUser->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'validation error',
-                    'errors' => $validateUser->errors(),
-                ], 401);
-            }
+    $token = $user->createToken('MyApp')->accessToken;
 
-            if (! Auth::attempt($request->only(['email', 'password']))) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Email & Password does not match with our record.',
-                ], 401);
-            }
+    return response()->json(['token' => $token], 201);
+  }
 
-            $user = User::where('email', $request->email)->first();
+  public function login(Request $request)
+  {
+    $credentials = $request->only('email', 'password');
 
-            return response()->json([
-                'status' => true,
-                'message' => 'User Logged In Successfully',
-                'token' => $user->createToken('API TOKEN')->plainTextToken,
-            ], 200);
-        } catch (\Throwable $th) {
-            return response()->json([
-                'status' => false,
-                'message' => $th->getMessage(),
-            ], 500);
-        }
+    if (Auth::attempt($credentials)) {
+      $user = Auth::user();
+      $token = $user->createToken('token')->accessToken;
+      return response()->json(['profile' => $user, 'token' => $token], 200);
+    } else {
+      return response()->json(['error' => 'Unauthorized'], 401);
     }
+  }
 
-    public function logout(Request $request)
-    {
-        $request->user()->currentAccessToken()->delete();
+  public function logout(Request $request)
+  {
+    $request->user()->token()->revoke();
+    return response()->json(['message' => 'Successfully logged out'], 200);
+  }
 
-        return response()->json([
-            'status' => true,
-        ], 200);
-    }
+  public function listUsers()
+  {
+    $users =  User::where('id', '<>', Auth::user()->id)->get();
+    return response()->json(['data' => $users], 200);
+  }
 }
